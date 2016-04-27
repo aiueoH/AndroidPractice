@@ -13,11 +13,13 @@ import android.view.MenuItem;
 
 import com.kdanmobile.androidpractice.screen.calculator.CalculatorFragment;
 import com.kdanmobile.androidpractice.screen.canvas.CanvasFragment;
+import com.kdanmobile.androidpractice.screen.clock.ClockFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Fragment calculatorFragment;
     private Fragment canvasFragment;
+    private Fragment clockFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private void initFragments() {
         calculatorFragment = new CalculatorFragment();
         canvasFragment = new CanvasFragment();
+        clockFragment = new ClockFragment();
     }
 
     @Override
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_canvas) {
             fragment = canvasFragment;
         } else if (id == R.id.nav_clock) {
-
+            fragment = clockFragment;
         } else if (id == R.id.nav_imageManipulation) {
 
         }
