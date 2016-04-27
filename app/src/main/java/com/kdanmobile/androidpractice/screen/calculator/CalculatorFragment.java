@@ -1,4 +1,4 @@
-package com.kdanmobile.androidpractice.screen;
+package com.kdanmobile.androidpractice.screen.calculator;
 
 
 import android.os.Bundle;
