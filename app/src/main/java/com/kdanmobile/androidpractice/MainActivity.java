@@ -12,10 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.kdanmobile.androidpractice.screen.calculator.CalculatorFragment;
+import com.kdanmobile.androidpractice.screen.canvas.CanvasFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Fragment calculatorFragment;
+    private Fragment canvasFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initFragments() {
         calculatorFragment = new CalculatorFragment();
+        canvasFragment = new CanvasFragment();
     }
 
     @Override
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_calculator) {
             fragment = calculatorFragment;
         } else if (id == R.id.nav_canvas) {
-
+            fragment = canvasFragment;
         } else if (id == R.id.nav_clock) {
 
         } else if (id == R.id.nav_imageManipulation) {
