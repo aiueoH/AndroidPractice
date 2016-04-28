@@ -2,6 +2,7 @@ package com.kdanmobile.androidpractice.screen.imagemanipulation;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -29,10 +30,15 @@ public class ManipulationContainer extends RelativeLayout {
         rotationGestureDetector.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                Log.d(TAG, "action down.");
                 downX = event.getX();
                 downY = event.getY();
                 break;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                Log.d(TAG, "action pointer down.");
+                break;
             case MotionEvent.ACTION_MOVE:
+                Log.d(TAG, "action move");
                 if (selectedItem != null) {
                     MarginLayoutParams layoutParams = (MarginLayoutParams) selectedItem.getLayoutParams();
                     float deltaX = event.getX() - downX;
@@ -42,10 +48,15 @@ public class ManipulationContainer extends RelativeLayout {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                Log.d(TAG, "action up");
+                selectedItem = null;
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
+                Log.d(TAG, "action pointer up");
+                break;
             case MotionEvent.ACTION_OUTSIDE:
                 selectedItem = null;
                 break;
-
         }
         return true;
     }
