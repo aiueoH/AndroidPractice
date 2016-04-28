@@ -13,16 +13,20 @@ public class ManipulationContainer extends RelativeLayout {
     private View selectedItem = null;
     private float downX, downY;
     private int itemOriginalLeftMargin, itemOriginalTopMargin;
+    private float itemOriginalRotation;
     private ScaleGestureDetector scaleGestureDetector;
+    private RotationGestureDetector rotationGestureDetector;
 
     public ManipulationContainer(Context context, AttributeSet attrs) {
         super(context, attrs);
         scaleGestureDetector = new ScaleGestureDetector(getContext(), new OnScaleGestureListener());
+        rotationGestureDetector = new RotationGestureDetector(new OnRotationGestureListener());
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         scaleGestureDetector.onTouchEvent(event);
+        rotationGestureDetector.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 downX = event.getX();
@@ -63,6 +67,28 @@ public class ManipulationContainer extends RelativeLayout {
                 return false;
             }
         });
+    }
+
+    private class OnRotationGestureListener implements RotationGestureDetector.OnRotationGestureListener {
+        @Override
+        public void onRotation(RotationGestureDetector detector) {
+            float angle = -detector.getAngle();
+            for (int i = 0; i < getChildCount(); i++) {
+                View item = getChildAt(i);
+                item.setRotation(itemOriginalRotation + angle);
+            }
+        }
+
+        @Override
+        public void onRotationBegin(RotationGestureDetector detector) {
+            if (getChildCount() > 0)
+                itemOriginalRotation = getChildAt(0).getRotation();
+        }
+
+        @Override
+        public void onRotationEnd(RotationGestureDetector detector) {
+
+        }
     }
 
     private class OnScaleGestureListener implements ScaleGestureDetector.OnScaleGestureListener {
