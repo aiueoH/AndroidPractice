@@ -69,6 +69,10 @@ public class ManipulationContainer extends RelativeLayout {
         });
     }
 
+    public void clear() {
+        removeAllViews();
+    }
+
     private class OnRotationGestureListener implements RotationGestureDetector.OnRotationGestureListener {
         @Override
         public void onRotation(RotationGestureDetector detector) {
